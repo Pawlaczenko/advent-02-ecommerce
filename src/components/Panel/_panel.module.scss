@@ -1,0 +1,24 @@
+.panel {
+    background: white;
+    border-radius: 25px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 70px #C7CBE3;
+    height: 875px;
+    max-height: 95vh;
+    padding-top: 50px;
+    overflow-y: scroll;
+    width: 375px;
+
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.title{
+    padding-left: 40px;
+    font-size: 2rem;
+    font-weight: bold;
+    padding-bottom: 50px;
+}

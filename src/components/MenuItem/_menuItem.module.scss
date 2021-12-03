@@ -1,0 +1,68 @@
+.menuItem {
+    margin-left: 15px;
+    display: flex;
+    padding-right: 30px;
+    position: relative;
+    gap: 20px;
+    margin-bottom: 45px;
+
+    &:nth-child(4n + 1):before {
+        --background: #e1f1fe
+      }
+      
+      &:nth-child(4n + 2):before {
+        --background: #ffe2f0
+      }
+      
+      &:nth-child(4n + 3):before {
+        --background: #f7f7fe
+      }
+      
+      &:nth-child(4n + 4):before {
+        --background: #defef0
+      }
+
+      &:before {
+        background: var(--background);
+        border-bottom-left-radius: 20px;
+        border-top-left-radius: 20px;
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 30px;
+        top: 0;
+        z-index: 1;
+      }      
+}
+
+.plate {
+    height: 148px;
+    width: 148px;
+    position: relative;
+    z-index: 2;
+    top: -15px;
+  }
+
+  .content {
+    padding-top: 30px;
+    position: relative;
+    width: 100%;
+    z-index: 3;
+  }
+
+  .name {
+    font-size: 1.125rem;
+    line-height: 20px;
+    margin: 0 0 16px 0;
+    padding: 0;
+  }
+  
+  .price{
+    font-size: 2rem;
+    line-height: 1;
+    font-weight: bold;
+    margin: 0 0 20px 0;
+    padding: 0;
+  }
