@@ -6,7 +6,7 @@ const Button = ({ id, price, handleClick, mode }) => {
     let btnTitle = mode ? "In Cart" : "Add to Cart";
     let btnClass = mode ? styles.added : "";
     return (
-        <button disabled={mode} onClick={() => { handleClick(id, price) }} className={`${styles.button} ${btnClass}`}>
+        <button disabled={mode} onClick={() => { handleClick(id, price / 100) }} className={`${styles.button} ${btnClass}`}>
             {mode && <img src={check} alt="Check" />}
             {btnTitle}
         </button >

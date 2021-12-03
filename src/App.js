@@ -68,14 +68,25 @@ function App() {
     let copy = Object.assign({}, total);
     const taxProcent = 0.0975;
     if (cart.length > 0) {
-      copy.subTotal = cart.reduce((prev, curr) => {
-        return prev.count * prev.price + curr.count * curr.price;
+      let st = 0;
+      cart.map((item) => {
+        st += Math.round(item.price * item.count * 100) / 100;
       });
-      copy.tax = copy.subTotal * taxProcent;
-      copy.total = copy.subTotal + copy.tax;
+      copy.subTotal = Math.round(st * 100) / 100;;
+      copy.tax = Math.round(copy.subTotal * taxProcent * 100) / 100;
+      copy.total = Math.round((copy.subTotal + copy.tax) * 100) / 100;
       handleTotal(copy);
     }
+    updateDocumentTitle();
   }, [cart])
+
+  const resetTotal = () => {
+    let copy = Object.assign({}, total);
+    copy.subTotal = 0;
+    copy.tax = 0;
+    copy.total = 0;
+    handleTotal(copy);
+  }
 
   const addItemToCart = (itemId, price) => {
     let copy = [...cart];
@@ -91,10 +102,18 @@ function App() {
   const changeCartCount = (itemId, step) => {
     let copy = [...cart];
     let itemIndex = copy.findIndex(el => el.id === itemId);
-    if ((copy[itemIndex].count > 0 || step > 0) && (copy[itemIndex].count < 99 || step < 0)) {
+    if (copy[itemIndex].count === 1 && step < 0) {
+      resetTotal();
+      copy = copy.filter(el => el.id != itemId);
+      changeCart(copy);
+    } else {
       copy[itemIndex].count += step;
       changeCart(copy);
     }
+  }
+
+  const updateDocumentTitle = () => {
+    document.title = `Total duty: $${total.total}`;
   }
 
   return (
